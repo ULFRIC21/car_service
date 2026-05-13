@@ -33,7 +33,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item"><a class="nav-link" href="{{ route('public.services') }}">Услуги</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('public.promotions') }}">Акции</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('public.reviews') }}">Отзывы</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('callback.create') }}">Звонок</a></li>
+                        @auth
+                            <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Кабинет</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('vehicles.index') }}">Авто</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('appointments.index') }}">Запись</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('work-orders.index') }}">Заказы</a></li>
+                            @if(auth()->user()->isAdmin())
+                                <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}">Админ</a></li>
+                            @endif
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
