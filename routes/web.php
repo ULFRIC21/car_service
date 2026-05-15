@@ -16,12 +16,11 @@ use App\Http\Controllers\PublicPromotionsController;
 use App\Http\Controllers\PublicReviewsController;
 use App\Http\Controllers\PublicServicesController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\WorkOrderController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
 
 Route::get('/services', [PublicServicesController::class, 'index'])->name('public.services');
 Route::get('/promotions', [PublicPromotionsController::class, 'index'])->name('public.promotions');

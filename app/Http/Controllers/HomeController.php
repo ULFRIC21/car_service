@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
-use App\Models\CallbackRequest;
 use App\Models\WorkOrder;
 use Illuminate\Http\Request;
 
@@ -18,6 +17,10 @@ class HomeController extends Controller
     {
         $user = $request->user();
 
+        if ($user->isAdmin()) {
+            return redirect()->route('admin.dashboard');
+        }
+
         $stats = [
             'vehicles' => $user->vehicles()->count(),
             'upcoming_appointments' => $user->appointments()
@@ -28,11 +31,6 @@ class HomeController extends Controller
                 ->whereIn('status', [WorkOrder::STATUS_DRAFT, WorkOrder::STATUS_IN_PROGRESS])
                 ->count(),
         ];
-
-        if ($user->isAdmin()) {
-            $stats['new_callbacks'] = CallbackRequest::query()->where('status', CallbackRequest::STATUS_NEW)->count();
-            $stats['pending_appointments'] = Appointment::query()->where('status', Appointment::STATUS_PENDING)->count();
-        }
 
         return view('home', compact('stats'));
     }

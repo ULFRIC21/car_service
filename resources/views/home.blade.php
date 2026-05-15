@@ -1,38 +1,77 @@
 @extends('layouts.app')
 
+@section('title', 'Личный кабинет — АвтоМастер')
+
 @section('content')
+<div class="as-page-header">
+    <div class="container">
+        <h1>Здравствуйте, {{ Auth::user()->name }}!</h1>
+        <p class="text-muted mb-0">Управляйте автомобилями, записями и заказ-нарядами</p>
+    </div>
+</div>
+
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-header">Личный кабинет</div>
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">{{ session('status') }}</div>
-                    @endif
-                    <p class="mb-3">Вы вошли как <strong>{{ Auth::user()->name }}</strong>.</p>
-                    <div class="row text-center mb-4">
-                        <div class="col-md-4"><div class="border rounded p-2">Автомобилей<br><strong>{{ $stats['vehicles'] }}</strong></div></div>
-                        <div class="col-md-4"><div class="border rounded p-2">Предстоящих записей<br><strong>{{ $stats['upcoming_appointments'] }}</strong></div></div>
-                        <div class="col-md-4"><div class="border rounded p-2">Открытых заказ-нарядов<br><strong>{{ $stats['open_work_orders'] }}</strong></div></div>
-                    </div>
-                    @if(auth()->user()->isAdmin())
-                        <div class="alert alert-info mb-3">
-                            Админ: новых заявок на звонок — <strong>{{ $stats['new_callbacks'] ?? 0 }}</strong>,
-                            записей в ожидании — <strong>{{ $stats['pending_appointments'] ?? 0 }}</strong>.
-                            <a href="{{ route('admin.dashboard') }}">Панель управления</a>
-                        </div>
-                    @endif
-                    <p class="mb-2">Разделы:</p>
-                    <ul>
-                        <li><a href="{{ route('vehicles.index') }}">Мои автомобили</a></li>
-                        <li><a href="{{ route('appointments.index') }}">Запись в сервис</a></li>
-                        <li><a href="{{ route('work-orders.index') }}">Мои заказ-наряды</a></li>
-                        <li><a href="{{ route('client.reviews.index') }}">Мои отзывы</a></li>
-                        <li><a href="{{ route('public.services') }}">Каталог услуг</a> · <a href="{{ route('public.promotions') }}">Акции</a> · <a href="{{ route('callback.create') }}">Заказать звонок</a></li>
-                    </ul>
-                </div>
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="as-dash-stat">
+                <div class="icon bg-warning bg-opacity-25 text-warning"><i class="bi bi-car-front"></i></div>
+                <div class="value">{{ $stats['vehicles'] }}</div>
+                <div class="label">Автомобилей</div>
             </div>
+        </div>
+        <div class="col-md-4">
+            <div class="as-dash-stat">
+                <div class="icon bg-primary bg-opacity-25 text-primary"><i class="bi bi-calendar-event"></i></div>
+                <div class="value">{{ $stats['upcoming_appointments'] }}</div>
+                <div class="label">Предстоящих записей</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="as-dash-stat">
+                <div class="icon bg-success bg-opacity-25 text-success"><i class="bi bi-clipboard-check"></i></div>
+                <div class="value">{{ $stats['open_work_orders'] }}</div>
+                <div class="label">Открытых заказ-нарядов</div>
+            </div>
+        </div>
+    </div>
+
+    <h5 class="fw-bold mb-3">Быстрые действия</h5>
+    <div class="row g-3">
+        <div class="col-md-6 col-lg-4">
+            <a href="{{ route('appointments.create') }}" class="as-quick-link">
+                <i class="bi bi-calendar-plus"></i>
+                <span>Записаться в сервис</span>
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <a href="{{ route('vehicles.index') }}" class="as-quick-link">
+                <i class="bi bi-car-front"></i>
+                <span>Мои автомобили</span>
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <a href="{{ route('appointments.index') }}" class="as-quick-link">
+                <i class="bi bi-list-check"></i>
+                <span>Мои записи</span>
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <a href="{{ route('work-orders.index') }}" class="as-quick-link">
+                <i class="bi bi-file-earmark-text"></i>
+                <span>Заказ-наряды</span>
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <a href="{{ route('client.reviews.create') }}" class="as-quick-link">
+                <i class="bi bi-star"></i>
+                <span>Оставить отзыв</span>
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <a href="{{ route('callback.create') }}" class="as-quick-link">
+                <i class="bi bi-telephone"></i>
+                <span>Заказать звонок</span>
+            </a>
         </div>
     </div>
 </div>
