@@ -1182,3 +1182,74 @@
 #76 C:\\Program Files\\Ampps\\www\\car_service\\server.php(21): require_once('...')
 #77 {main}
 "} 
+[2026-05-18 08:07:37] local.ERROR: Command "make:contoller" is not defined.
+
+Did you mean one of these?
+    make:cast
+    make:channel
+    make:command
+    make:component
+    make:controller
+    make:event
+    make:exception
+    make:factory
+    make:job
+    make:listener
+    make:mail
+    make:middleware
+    make:migration
+    make:model
+    make:notification
+    make:observer
+    make:policy
+    make:provider
+    make:request
+    make:resource
+    make:rule
+    make:seeder
+    make:test
+    ui:controllers {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"make:contoller\" is not defined.
+
+Did you mean one of these?
+    make:cast
+    make:channel
+    make:command
+    make:component
+    make:controller
+    make:event
+    make:exception
+    make:factory
+    make:job
+    make:listener
+    make:mail
+    make:middleware
+    make:migration
+    make:model
+    make:notification
+    make:observer
+    make:policy
+    make:provider
+    make:request
+    make:resource
+    make:rule
+    make:seeder
+    make:test
+    ui:controllers at C:\\Program Files\\Ampps\\www\\car_service\\vendor\\symfony\\console\\Application.php:720)
+[stacktrace]
+#0 C:\\Program Files\\Ampps\\www\\car_service\\vendor\\symfony\\console\\Application.php(259): Symfony\\Component\\Console\\Application->find()
+#1 C:\\Program Files\\Ampps\\www\\car_service\\vendor\\symfony\\console\\Application.php(171): Symfony\\Component\\Console\\Application->doRun()
+#2 C:\\Program Files\\Ampps\\www\\car_service\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(94): Symfony\\Component\\Console\\Application->run()
+#3 C:\\Program Files\\Ampps\\www\\car_service\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(129): Illuminate\\Console\\Application->run()
+#4 C:\\Program Files\\Ampps\\www\\car_service\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#5 {main}
+"} 
+[2026-05-18 12:35:07] local.ERROR: There are no commands defined in the "php" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"php\" namespace. at C:\\Program Files\\Ampps\\www\\car_service\\vendor\\symfony\\console\\Application.php:650)
+[stacktrace]
+#0 C:\\Program Files\\Ampps\\www\\car_service\\vendor\\symfony\\console\\Application.php(701): Symfony\\Component\\Console\\Application->findNamespace()
+#1 C:\\Program Files\\Ampps\\www\\car_service\\vendor\\symfony\\console\\Application.php(259): Symfony\\Component\\Console\\Application->find()
+#2 C:\\Program Files\\Ampps\\www\\car_service\\vendor\\symfony\\console\\Application.php(171): Symfony\\Component\\Console\\Application->doRun()
+#3 C:\\Program Files\\Ampps\\www\\car_service\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(94): Symfony\\Component\\Console\\Application->run()
+#4 C:\\Program Files\\Ampps\\www\\car_service\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(129): Illuminate\\Console\\Application->run()
+#5 C:\\Program Files\\Ampps\\www\\car_service\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#6 {main}
+"} 

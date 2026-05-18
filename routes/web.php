@@ -20,3 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\Dashboard__controller::class, 'index'])->name('dashboard');
+    });
+    // вот тут я написал Dashboard__controller: ему не понравилось а дык как App\Http\Controllers\Admin\ то все окей почему?
