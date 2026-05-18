@@ -63,17 +63,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-
-        // хоба админка
         'admin' => \App\Http\Middleware\Admin::class,
-        'admin.auth' => \App\Http\Middleware\AdminAuth::class,
-        'admin.auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'admin.cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'admin.can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'admin.guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'admin.password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'admin.signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
-        'admin.throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'admin.verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
 }
