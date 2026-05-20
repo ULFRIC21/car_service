@@ -42,4 +42,19 @@ class User extends Authenticatable
     {
         return $this->role === self::ROLE_MECHANIC;
     }
+
+    public function vehicles()
+    {
+        return $this->hasMany(Vehicle::class);
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
+    public function mechanicAppointments()
+    {
+        return $this->hasMany(Appointment::class, 'mechanic_id');
+    }
 }

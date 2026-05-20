@@ -3,12 +3,18 @@
 @section('title', 'Главная')
 
 @section('content')
-<h1>дыупывпыкевап</h1>
+<h1>Панель администратора</h1>
 
-<div class="mb-3">
-    <a href="#" class="btn btn-primary">Добавить </a>
-    <a href="#" class="btn btn-secondary">Все</a>
-    <a href="#" class="btn btn-outline-secondary">Записи</a>
-</div>
+<ul>
+    <li>Услуги: {{ $stats['services'] }}</li>
+    <li>Пользователи: {{ $stats['users'] }}</li>
+    <li>Авто: {{ $stats['vehicles'] }}</li>
+    <li>Записи: {{ $stats['appointments'] }} (ожидают: {{ $stats['pending'] }})</li>
+</ul>
 
+<p>
+    <a href="{{ route('admin.services.index') }}">Услуги</a> |
+    <a href="{{ route('admin.services.create') }}">+ Услуга</a> |
+    <a href="{{ route('admin.appointments.index') }}">Записи</a>
+</p>
 @endsection

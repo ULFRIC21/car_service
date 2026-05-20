@@ -16,6 +16,12 @@
                     <a class="nav-link" href="{{ route('admin.dashboard') }}">Главная</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.services.index') }}">Услуги</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.appointments.index') }}">Записи</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">На сайт</a>
                 </li>
             </ul>
@@ -23,6 +29,15 @@
         <main class="col-md-10 py-4">
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
             @yield('content')
         </main>
