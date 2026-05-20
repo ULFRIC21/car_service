@@ -16,13 +16,12 @@
 
     <table class="table table-bordered">
         <thead>
-            <tr><th>Услуга</th><th>Авто</th><th>Дата</th><th>Статус</th><th></th></tr>
+            <tr><th>Услуга</th><th>Дата</th><th>Статус</th><th></th></tr>
         </thead>
         <tbody>
             @forelse ($appointments as $a)
                 <tr>
                     <td>{{ $a->service->name }}</td>
-                    <td>{{ $a->vehicle->brand }} {{ $a->vehicle->plate_number }}</td>
                     <td>{{ $a->scheduled_at->format('d.m.Y H:i') }}</td>
                     <td>{{ $a->status_label }}</td>
                     <td>
@@ -35,7 +34,7 @@
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="5">Нет записей</td></tr>
+                <tr><td colspan="4">Нет записей</td></tr>
             @endforelse
         </tbody>
     </table>

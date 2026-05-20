@@ -20,7 +20,7 @@
         <tr>
             <th>ID</th>
             <th>Клиент</th>
-            <th>Авто</th>
+            <th>Телефон</th>
             <th>Услуга</th>
             <th>Дата</th>
             <th>Статус</th>
@@ -31,8 +31,8 @@
         @forelse ($appointments as $appointment)
             <tr>
                 <td>{{ $appointment->id }}</td>
-                <td>{{ $appointment->user->name }}</td>
-                <td>{{ $appointment->vehicle->brand }} {{ $appointment->vehicle->model }} ({{ $appointment->vehicle->plate_number }})</td>
+                <td>{{ $appointment->user->full_name }}</td>
+                <td>{{ $appointment->user->phone ?? '—' }}</td>
                 <td>{{ $appointment->service->name }}</td>
                 <td>{{ $appointment->scheduled_at->format('d.m.Y H:i') }}</td>
                 <td>{{ $appointment->status_label }}</td>

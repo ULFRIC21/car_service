@@ -5,8 +5,11 @@
 @section('content')
 <h1>Запись #{{ $appointment->id }}</h1>
 
-<p><strong>Клиент:</strong> {{ $appointment->user->name }} ({{ $appointment->user->email }})</p>
-<p><strong>Авто:</strong> {{ $appointment->vehicle->brand }} {{ $appointment->vehicle->model }}, {{ $appointment->vehicle->plate_number }}</p>
+<p><strong>Клиент:</strong> {{ $appointment->user->full_name }} ({{ $appointment->user->email }})</p>
+<p><strong>Телефон:</strong> {{ $appointment->user->phone ?? '—' }}</p>
+@if ($appointment->vehicle)
+    <p><strong>Авто (архив):</strong> {{ $appointment->vehicle->brand }} {{ $appointment->vehicle->model }}, {{ $appointment->vehicle->plate_number }}</p>
+@endif
 <p><strong>Услуга:</strong> {{ $appointment->service->name }} — {{ $appointment->price_at_booking ?? $appointment->service->price }} ₽</p>
 <p><strong>Дата:</strong> {{ $appointment->scheduled_at->format('d.m.Y H:i') }}</p>
 <p><strong>Статус:</strong> {{ $appointment->status_label }}</p>

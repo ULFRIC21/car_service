@@ -18,6 +18,9 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
+        'first_name',
+        'last_name',
+        'patronymic',
         'email',
         'phone',
         'password',
@@ -41,6 +44,24 @@ class User extends Authenticatable
     public function isMechanic()
     {
         return $this->role === self::ROLE_MECHANIC;
+    }
+
+    public function getFullNameAttribute(): string
+    {
+        if ($this->last_name || $this->first_name) {
+            return trim(implode(' ', array_filter([
+                $this->last_name,
+                $this->first_name,
+                $this->patronymic,
+            ])));
+        }
+
+        return (string) $this->name;
+    }
+
+    public static function buildFullName(?string $lastName, ?string $firstName, ?string $patronymic = null): string
+    {
+        return trim(implode(' ', array_filter([$lastName, $firstName, $patronymic])));
     }
 
     public function vehicles()

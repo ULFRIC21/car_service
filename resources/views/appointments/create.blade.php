@@ -8,16 +8,24 @@
     @endif
     <form method="POST" action="{{ route('appointments.store') }}">
         @csrf
+        <p class="text-muted">Контакты (сохранятся в профиле)</p>
         <div class="mb-2">
-            <label>Авто *</label>
-            <select name="vehicle_id" class="form-select" required>
-                @foreach ($vehicles as $v)
-                    <option value="{{ $v->id }}" {{ old('vehicle_id') == $v->id ? 'selected' : '' }}>
-                        {{ $v->brand }} {{ $v->model }} ({{ $v->plate_number }})
-                    </option>
-                @endforeach
-            </select>
+            <label>Фамилия *</label>
+            <input type="text" name="last_name" class="form-control" value="{{ old('last_name', $user->last_name) }}" required>
         </div>
+        <div class="mb-2">
+            <label>Имя *</label>
+            <input type="text" name="first_name" class="form-control" value="{{ old('first_name', $user->first_name) }}" required>
+        </div>
+        <div class="mb-2">
+            <label>Отчество</label>
+            <input type="text" name="patronymic" class="form-control" value="{{ old('patronymic', $user->patronymic) }}">
+        </div>
+        <div class="mb-2">
+            <label>Телефон *</label>
+            <input type="text" name="phone" class="form-control" value="{{ old('phone', $user->phone) }}" required>
+        </div>
+        <hr>
         <div class="mb-2">
             <label>Услуга *</label>
             <select name="service_id" class="form-select" required>

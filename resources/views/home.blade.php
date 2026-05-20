@@ -12,14 +12,15 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
-            <p>Привет, {{ Auth::user()->name }}.</p>
+            <p>Привет, {{ Auth::user()->full_name }}.</p>
+            @if (Auth::user()->phone)
+                <p>Телефон: {{ Auth::user()->phone }}</p>
+            @endif
 
             @if (Auth::user()->isAdmin())
                 <a href="{{ route('admin.dashboard') }}" class="btn btn-dark btn-sm">Админка</a>
             @endif
 
-            <a href="{{ route('vehicles.index') }}" class="btn btn-primary btn-sm">Мои авто</a>
-            <a href="{{ route('vehicles.create') }}" class="btn btn-outline-primary btn-sm">+ Авто</a>
             <a href="{{ route('appointments.index') }}" class="btn btn-primary btn-sm">Мои записи</a>
             <a href="{{ route('appointments.create') }}" class="btn btn-outline-primary btn-sm">+ Запись</a>
         </div>

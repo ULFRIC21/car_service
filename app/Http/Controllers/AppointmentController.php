@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -16,7 +17,7 @@ class AppointmentController extends Controller
     public function index()
     {
         $appointments = auth()->user()->appointments()
-            ->with(['vehicle', 'service'])
+            ->with('service')
             ->orderByDesc('scheduled_at')
             ->get();
 
@@ -25,31 +26,37 @@ class AppointmentController extends Controller
 
     public function create()
     {
-        $vehicles = auth()->user()->vehicles()->orderBy('brand')->get();
+        $user = auth()->user();
         $services = Service::where('is_active', true)->orderBy('name')->get();
 
-        if ($vehicles->isEmpty()) {
-            return redirect()->route('vehicles.create')
-                ->with('success', 'Сначала добавьте автомобиль.');
-        }
-
-        return view('appointments.create', compact('vehicles', 'services'));
+        return view('appointments.create', compact('user', 'services'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
-            'vehicle_id' => 'required|exists:vehicles,id',
+            'last_name' => 'required|string|max:100',
+            'first_name' => 'required|string|max:100',
+            'patronymic' => 'nullable|string|max:100',
+            'phone' => 'required|string|max:20',
             'service_id' => 'required|exists:services,id',
             'scheduled_at' => 'required|date|after:now',
             'client_comment' => 'nullable|string|max:1000',
         ]);
 
-        $vehicle = auth()->user()->vehicles()->findOrFail($data['vehicle_id']);
+        $user = auth()->user();
+        $user->update([
+            'last_name' => $data['last_name'],
+            'first_name' => $data['first_name'],
+            'patronymic' => $data['patronymic'] ?? null,
+            'phone' => $data['phone'],
+            'name' => User::buildFullName($data['last_name'], $data['first_name'], $data['patronymic'] ?? null),
+        ]);
+
         $service = Service::where('is_active', true)->findOrFail($data['service_id']);
 
-        auth()->user()->appointments()->create([
-            'vehicle_id' => $vehicle->id,
+        $user->appointments()->create([
+            'vehicle_id' => null,
             'service_id' => $service->id,
             'scheduled_at' => $data['scheduled_at'],
             'client_comment' => $data['client_comment'] ?? null,
