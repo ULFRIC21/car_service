@@ -16,6 +16,12 @@
                     <a class="nav-link" href="<?php echo e(route('admin.dashboard')); ?>">Главная</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="<?php echo e(route('admin.services.index')); ?>">Услуги</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo e(route('admin.appointments.index')); ?>">Записи</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="<?php echo e(route('home')); ?>">На сайт</a>
                 </li>
             </ul>
@@ -23,6 +29,15 @@
         <main class="col-md-10 py-4">
             <?php if(session('success')): ?>
                 <div class="alert alert-success"><?php echo e(session('success')); ?></div>
+            <?php endif; ?>
+            <?php if($errors->any()): ?>
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li><?php echo e($error); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </ul>
+                </div>
             <?php endif; ?>
             <?php echo $__env->yieldContent('content'); ?>
         </main>

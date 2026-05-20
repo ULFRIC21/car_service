@@ -9,7 +9,13 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
--- USE `laravel`;
+-- Создать базу, если её ещё нет (ошибка #1049 = база не создана)
+CREATE DATABASE IF NOT EXISTS `laravel`
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+-- Имя как в .env → DB_DATABASE. Если другое — замените laravel везде в файле.
+USE `laravel`;
 
 -- -----------------------------------------------------------------------------
 -- users (Laravel Auth + роли автосервиса)
@@ -147,3 +153,8 @@ ON DUPLICATE KEY UPDATE
 -- =============================================================================
 -- ALTER TABLE `users` ADD COLUMN `phone` varchar(20) NULL AFTER `email`;
 -- ALTER TABLE `users` ADD COLUMN `role` varchar(20) NOT NULL DEFAULT 'client' AFTER `password`;
+
+-- =============================================================================
+-- После импорта этого файла НЕ запускайте сразу php artisan migrate!
+-- Сначала импортируйте sync_migrations_after_import.sql (см. database/sql/README.md)
+-- =============================================================================

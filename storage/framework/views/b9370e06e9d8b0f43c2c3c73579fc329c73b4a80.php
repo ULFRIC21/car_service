@@ -1,22 +1,25 @@
 <?php $__env->startSection('content'); ?>
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"><?php echo e(__('Dashboard')); ?></div>
+    <div class="card">
+        <div class="card-header">Личный кабинет</div>
+        <div class="card-body">
+            <?php if(session('status')): ?>
+                <div class="alert alert-success"><?php echo e(session('status')); ?></div>
+            <?php endif; ?>
+            <?php if(session('success')): ?>
+                <div class="alert alert-success"><?php echo e(session('success')); ?></div>
+            <?php endif; ?>
 
-                <div class="card-body">
-                    <?php if(session('status')): ?>
-                        <div class="alert alert-success" role="alert">
-                            <?php echo e(session('status')); ?>
+            <p>Привет, <?php echo e(Auth::user()->name); ?>.</p>
 
-                        </div>
-                    <?php endif; ?>
+            <?php if(Auth::user()->isAdmin()): ?>
+                <a href="<?php echo e(route('admin.dashboard')); ?>" class="btn btn-dark btn-sm">Админка</a>
+            <?php endif; ?>
 
-                    <?php echo e(__('You are logged in!')); ?>
-
-                </div>
-            </div>
+            <a href="<?php echo e(route('vehicles.index')); ?>" class="btn btn-primary btn-sm">Мои авто</a>
+            <a href="<?php echo e(route('vehicles.create')); ?>" class="btn btn-outline-primary btn-sm">+ Авто</a>
+            <a href="<?php echo e(route('appointments.index')); ?>" class="btn btn-primary btn-sm">Мои записи</a>
+            <a href="<?php echo e(route('appointments.create')); ?>" class="btn btn-outline-primary btn-sm">+ Запись</a>
         </div>
     </div>
 </div>
