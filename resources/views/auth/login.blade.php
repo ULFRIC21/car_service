@@ -12,6 +12,7 @@
                         <div>
                             <h2 class="mb-3">Добро пожаловать</h2>
                             <p class="text-secondary small">Войдите в личный кабинет или панель администратора</p>
+                            <img src="{{ config('site.images.workshop') }}" alt="" class="rounded mt-4 opacity-75" style="object-fit: cover; height: 140px; width: 100%;" loading="lazy" width="300" height="140">
                         </div>
                         <div class="small text-secondary">
                             <p class="mb-2"><strong class="text-white">Клиент:</strong> зарегистрируйтесь на сайте</p>

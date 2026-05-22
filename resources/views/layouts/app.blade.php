@@ -24,7 +24,7 @@
 
     <nav class="navbar navbar-expand-lg as-navbar sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">Авто<span>Мастер</span></a>
+            <a class="navbar-brand" href="{{ url('/') }}"><i class="bi bi-wrench-adjustable-circle"></i> Авто<span>Мастер</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Меню">
                 <span class="navbar-toggler-icon"></span>
             </button>
