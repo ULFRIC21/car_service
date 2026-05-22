@@ -4,17 +4,19 @@ use App\Http\Controllers\Admin\AppointmentController as AdminAppointmentControll
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
+    Route::resource('vehicles', VehicleController::class)->except(['show']);
+
     Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments.index');
     Route::get('appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
     Route::post('appointments', [AppointmentController::class, 'store'])->name('appointments.store');

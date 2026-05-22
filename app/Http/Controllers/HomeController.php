@@ -2,27 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $user = $request->user();
+
+        if ($user->isAdmin()) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        $stats = [
+            'vehicles' => $user->vehicles()->count(),
+            'upcoming_appointments' => $user->appointments()
+                ->whereIn('status', [Appointment::STATUS_PENDING, Appointment::STATUS_CONFIRMED])
+                ->where('scheduled_at', '>=', now())
+                ->count(),
+            'total_appointments' => $user->appointments()->count(),
+        ];
+
+        return view('home', compact('stats'));
     }
 }

@@ -5,7 +5,7 @@
 @section('content')
 <h1>Редактирование: {{ $service->name }}</h1>
 
-<form method="POST" action="{{ route('admin.services.update', $service) }}">
+<form method="POST" action="{{ route('admin.services.update', $service) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     @include('admin.services._form', ['service' => $service])

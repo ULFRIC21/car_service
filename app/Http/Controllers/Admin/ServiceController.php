@@ -22,8 +22,8 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
-        $data = $this->validated($request);
-        $data['is_active'] = $request->boolean('is_active');
+        $data = $this->validatedData($request);
+        $data['image_path'] = $this->storeUploadedImage($request, $data['image_path'] ?? null);
 
         Service::create($data);
 
@@ -37,8 +37,8 @@ class ServiceController extends Controller
 
     public function update(Request $request, Service $service)
     {
-        $data = $this->validated($request);
-        $data['is_active'] = $request->boolean('is_active');
+        $data = $this->validatedData($request);
+        $data['image_path'] = $this->storeUploadedImage($request, $data['image_path'] ?? $service->image_path);
 
         $service->update($data);
 
@@ -52,14 +52,44 @@ class ServiceController extends Controller
         return redirect()->route('admin.services.index')->with('success', 'Услуга удалена.');
     }
 
-    private function validated(Request $request): array
+    private function validatedData(Request $request): array
     {
-        return $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'image_path' => 'nullable|string|max:255',
+            'image' => 'nullable|image|max:5120',
             'price' => 'required|numeric|min:0',
             'duration_minutes' => 'required|integer|min:15|max:480',
             'is_active' => 'nullable|boolean',
         ]);
+
+        return [
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'image_path' => $request->input('image_path'),
+            'price' => $request->input('price'),
+            'duration_minutes' => $request->input('duration_minutes'),
+            'is_active' => $request->boolean('is_active'),
+        ];
+    }
+
+    private function storeUploadedImage(Request $request, ?string $currentPath): ?string
+    {
+        if (! $request->hasFile('image')) {
+            return $currentPath;
+        }
+
+        $file = $request->file('image');
+        $name = $file->getClientOriginalName();
+        $destination = public_path('images');
+
+        if (! is_dir($destination)) {
+            mkdir($destination, 0755, true);
+        }
+
+        $file->move($destination, $name);
+
+        return $name;
     }
 }

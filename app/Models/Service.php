@@ -12,6 +12,7 @@ class Service extends Model
     protected $fillable = [
         'name',
         'description',
+        'image_path',
         'price',
         'duration_minutes',
         'is_active',
@@ -25,5 +26,10 @@ class Service extends Model
     public function appointments()
     {
         return $this->hasMany(Appointment::class);
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->image_path ? site_image($this->image_path) : null;
     }
 }
