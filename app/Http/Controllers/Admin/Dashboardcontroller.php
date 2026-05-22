@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Service;
 use App\Models\User;
-use App\Models\Vehicle;
-
 class DashboardController extends Controller
 {
     public function index()
@@ -16,7 +14,6 @@ class DashboardController extends Controller
             'stats' => [
                 'services' => Service::count(),
                 'users' => User::count(),
-                'vehicles' => Vehicle::count(),
                 'appointments' => Appointment::count(),
                 'pending' => Appointment::where('status', Appointment::STATUS_PENDING)->count(),
             ],

@@ -8,7 +8,6 @@
 <ul>
     <li>Услуги: {{ $stats['services'] }}</li>
     <li>Пользователи: {{ $stats['users'] }}</li>
-    <li>Авто: {{ $stats['vehicles'] }}</li>
     <li>Записи: {{ $stats['appointments'] }} (ожидают: {{ $stats['pending'] }})</li>
 </ul>
 
