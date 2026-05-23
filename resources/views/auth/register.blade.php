@@ -1,51 +1,48 @@
-@extends('layouts.app')
+@extends('layouts.landing-auth')
 
-@section('title', 'Регистрация — АвтоМастер')
+@section('title', 'Регистрация')
 
 @section('content')
-<div class="as-auth-wrap">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 col-xl-9">
-                <div class="as-auth-card row g-0">
-                    <div class="col-md-5 auth-side d-none d-md-flex flex-column justify-content-between">
-                        <div>
-                            <h2 class="mb-3">Запись в один клик</h2>
-                            <p class="text-secondary small">Ведите авто, записи и заказ-наряды в личном кабинете</p>
-                        </div>
-                        <img src="{{ \App\Models\SiteImage::urlForSlot('car') }}" alt="Автомобиль после обслуживания" class="as-img-contained rounded mt-3 opacity-75" loading="lazy">
-                    </div>
-                    <div class="col-md-7 auth-form">
-                    <h3 class="fw-bold mb-2">Создать аккаунт</h3>
-                    <p class="text-muted small mb-4">Записывайтесь в сервис, ведите автомобили и отслеживайте ремонт онлайн</p>
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Имя</label>
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
-                            @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required>
-                            @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Пароль</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
-                            @error('password')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-                        <div class="mb-4">
-                            <label for="password-confirm" class="form-label">Подтверждение пароля</label>
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                        </div>
-                        <button type="submit" class="btn as-btn-cta w-100 mb-3">Зарегистрироваться</button>
-                        <p class="text-center small text-muted mb-0">Уже есть аккаунт? <a href="{{ route('login') }}">Войти</a></p>
-                    </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="landing-container auth-box">
+    <h1 class="auth-box__title">Регистрация</h1>
+
+    @if ($errors->any())
+        <ul class="auth-box__errors">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
+    <form method="POST" action="{{ route('register') }}" class="auth-box__form">
+        @csrf
+
+        <label class="auth-box__label" for="last_name">Фамилия</label>
+        <input id="last_name" type="text" class="auth-box__input" name="last_name" value="{{ old('last_name') }}" required autofocus>
+
+        <label class="auth-box__label" for="first_name">Имя</label>
+        <input id="first_name" type="text" class="auth-box__input" name="first_name" value="{{ old('first_name') }}" required>
+
+        <label class="auth-box__label" for="patronymic">Отчество</label>
+        <input id="patronymic" type="text" class="auth-box__input" name="patronymic" value="{{ old('patronymic') }}">
+
+        <label class="auth-box__label" for="phone">Телефон</label>
+        <input id="phone" type="text" class="auth-box__input" name="phone" value="{{ old('phone') }}" placeholder="8 800 535 353">
+
+        <label class="auth-box__label" for="email">Email</label>
+        <input id="email" type="email" class="auth-box__input" name="email" value="{{ old('email') }}" required>
+
+        <label class="auth-box__label" for="password">Пароль</label>
+        <input id="password" type="password" class="auth-box__input" name="password" required>
+
+        <label class="auth-box__label" for="password-confirm">Подтверждение пароля</label>
+        <input id="password-confirm" type="password" class="auth-box__input" name="password_confirmation" required>
+
+        <button type="submit" class="auth-box__btn">Зарегистрироваться</button>
+    </form>
+
+    <p class="auth-box__footer">
+        Уже есть аккаунт? <a href="{{ route('login') }}">Войти</a>
+    </p>
 </div>
 @endsection

@@ -1,0 +1,159 @@
+body.simple-page {
+    margin: 0;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    background: #fff;
+}
+
+.simple-top {
+    padding: 10px 16px;
+    border-bottom: 2px solid #000;
+    background: #fff;
+}
+
+.simple-top__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.simple-top a {
+    color: #00f;
+}
+
+.simple-top a:visited {
+    color: #551a8b;
+}
+
+.simple-brand {
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    color: #000 !important;
+}
+
+.simple-nav {
+    margin: 12px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.simple-nav a {
+    margin-right: 12px;
+}
+
+.simple-wrap {
+    max-width: 900px;
+    margin: 0;
+    padding: 16px;
+}
+
+.simple-wrap h1 {
+    font-size: 18px;
+    margin: 0 0 12px;
+}
+
+.simple-wrap h2 {
+    font-size: 16px;
+    margin: 20px 0 8px;
+}
+
+.simple-alert {
+    padding: 8px 10px;
+    margin-bottom: 12px;
+    border: 1px solid #090;
+    background: #efe;
+}
+
+.simple-errors {
+    padding: 8px 10px;
+    margin-bottom: 12px;
+    border: 1px solid #c00;
+    background: #fee;
+}
+
+.simple-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+}
+
+.simple-table th,
+.simple-table td {
+    border: 1px solid #999;
+    padding: 6px 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.simple-table th {
+    background: #eee;
+}
+
+.simple-form p {
+    margin: 8px 0;
+}
+
+.simple-form label {
+    display: block;
+    margin-top: 10px;
+}
+
+.simple-form input,
+.simple-form select,
+.simple-form textarea {
+    width: 100%;
+    max-width: 360px;
+    padding: 4px;
+    font: inherit;
+    border: 1px solid #999;
+    box-sizing: border-box;
+}
+
+.simple-form textarea {
+    height: 60px;
+}
+
+.simple-btn {
+    margin-top: 12px;
+    padding: 4px 12px;
+    font: inherit;
+    cursor: pointer;
+}
+
+.simple-list {
+    margin: 0;
+    padding-left: 24px;
+}
+
+.simple-list li {
+    margin: 6px 0;
+}
+
+.simple-muted {
+    color: #666;
+}
+
+.simple-link-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: #00f;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.admin-top,
+.admin-wrap,
+.admin-alert,
+.admin-section,
+.admin-table,
+.admin-empty,
+.admin-btn,
+.admin-muted {
+    /* совместимость со старой админкой */
+}

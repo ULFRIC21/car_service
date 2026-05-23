@@ -63,14 +63,16 @@ class SiteImage extends Model
 
     public static function urlForSlot(string $slot, string $group = 'page'): ?string
     {
-        $row = static::query()->where('group', $group)->where('slot', $slot)->first();
+        if (\Illuminate\Support\Facades\Schema::hasTable('site_images')) {
+            $row = static::query()->where('group', $group)->where('slot', $slot)->first();
 
-        if ($row) {
-            return $row->url();
+            if ($row) {
+                return $row->url();
+            }
         }
 
         $file = config("site.files.{$slot}");
 
-        return $file ? site_image($file) : null;
+        return $file ? site_image($file) : asset('images/glav/slide1.jpg');
     }
 }

@@ -1,37 +1,67 @@
 @extends('layouts.admin')
 
-@section('title', 'Обзор')
+@section('title', 'Клиенты')
 
 @section('content')
-<h1 class="fw-bold mb-4">Панель администратора</h1>
+<h1>Заявки (регистрация на сайте)</h1>
 
-<div class="row g-3 mb-4">
-    <div class="col-md-4">
-        <div class="as-dash-stat">
-            <div class="icon bg-primary bg-opacity-25 text-primary"><i class="bi bi-wrench"></i></div>
-            <div class="value">{{ $stats['services'] }}</div>
-            <div class="label">Услуг</div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="as-dash-stat">
-            <div class="icon bg-warning bg-opacity-25 text-warning"><i class="bi bi-people"></i></div>
-            <div class="value">{{ $stats['users'] }}</div>
-            <div class="label">Пользователей</div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="as-dash-stat">
-            <div class="icon bg-success bg-opacity-25 text-success"><i class="bi bi-calendar-check"></i></div>
-            <div class="value">{{ $stats['appointments'] }}</div>
-            <div class="label">Записей (ожидают: {{ $stats['pending'] }})</div>
-        </div>
-    </div>
-</div>
+<h2>Новые заявки ({{ $pending->count() }})</h2>
+@if ($pending->isEmpty())
+    <p class="simple-muted">Новых заявок нет.</p>
+@else
+    <table class="simple-table">
+        <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Телефон</th>
+                <th>Email</th>
+                <th>Регистрация</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($pending as $client)
+                <tr>
+                    <td>{{ $client->full_name }}</td>
+                    <td>{{ $client->phone ?: '—' }}</td>
+                    <td>{{ $client->email }}</td>
+                    <td>{{ $client->created_at->format('d.m.Y H:i') }}</td>
+                    <td>
+                        <form method="POST" action="{{ route('admin.clients.contacted', $client) }}">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="simple-btn">Позвонили</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endif
 
-<div class="d-flex flex-wrap gap-2">
-    <a href="{{ route('admin.services.index') }}" class="btn as-btn-cta">Услуги</a>
-    <a href="{{ route('admin.services.create') }}" class="btn as-btn-outline">+ Услуга</a>
-    <a href="{{ route('admin.appointments.index') }}" class="btn as-btn-outline">Записи</a>
-</div>
+<h2>Уже позвонили ({{ $contacted->count() }})</h2>
+@if ($contacted->isEmpty())
+    <p class="simple-muted">Пока никого не отмечали.</p>
+@else
+    <table class="simple-table">
+        <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Телефон</th>
+                <th>Email</th>
+                <th>Звонок</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($contacted as $client)
+                <tr>
+                    <td>{{ $client->full_name }}</td>
+                    <td>{{ $client->phone ?: '—' }}</td>
+                    <td>{{ $client->email }}</td>
+                    <td>{{ $client->contacted_at->format('d.m.Y H:i') }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endif
 @endsection

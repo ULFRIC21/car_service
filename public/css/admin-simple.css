@@ -1,0 +1,115 @@
+body.admin-page {
+    margin: 0;
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    color: #1a1a1a;
+    background: #f4f4f4;
+}
+
+.admin-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-top h1 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.admin-top__actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.admin-top a {
+    color: #333;
+    text-decoration: none;
+}
+
+.admin-top a:hover {
+    text-decoration: underline;
+}
+
+.admin-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.admin-alert {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    border-radius: 4px;
+}
+
+.admin-section {
+    margin-bottom: 2rem;
+}
+
+.admin-section h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 0.65rem 0.85rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.admin-table th {
+    background: #fafafa;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-empty {
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+.admin-btn {
+    display: inline-block;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: #fff;
+    background: #e85d04;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.admin-btn:hover {
+    background: #d35400;
+}
+
+.admin-muted {
+    color: #888;
+    font-size: 0.875rem;
+}
