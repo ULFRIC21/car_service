@@ -28,7 +28,7 @@ class RegisterController extends Controller
             'patronymic' => ['nullable', 'string', 'max:100'],
             'phone' => ['nullable', 'string', 'max:20'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'confirmed'],
         ]);
     }
 

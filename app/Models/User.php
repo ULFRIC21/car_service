@@ -25,6 +25,7 @@ class User extends Authenticatable
         'phone',
         'password',
         'role',
+        'contacted_at',
     ];
 
     protected $hidden = [
@@ -34,6 +35,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'contacted_at' => 'datetime',
     ];
 
     public function isAdmin()

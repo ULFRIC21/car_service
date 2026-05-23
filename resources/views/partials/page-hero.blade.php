@@ -1,5 +1,5 @@
 @php
-    $heroImage = $image ?? \App\Models\SiteImage::urlForSlot('workshop');
+    $heroImage = $image ?? asset('images/glav/slide1.jpg');
     $heroTitle = $title ?? '';
     $heroSubtitle = $subtitle ?? '';
 @endphp

@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\AppointmentController as AdminAppointmentController;
+use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ServicePageController;
@@ -37,8 +36,5 @@ Route::middleware(['auth', 'admin'])
     ->name('admin.')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-        Route::resource('services', AdminServiceController::class)->except(['show']);
-        Route::get('appointments', [AdminAppointmentController::class, 'index'])->name('appointments.index');
-        Route::get('appointments/{appointment}', [AdminAppointmentController::class, 'show'])->name('appointments.show');
-        Route::patch('appointments/{appointment}/status', [AdminAppointmentController::class, 'updateStatus'])->name('appointments.update-status');
+        Route::patch('clients/{user}/contacted', [AdminClientController::class, 'markContacted'])->name('clients.contacted');
     });
