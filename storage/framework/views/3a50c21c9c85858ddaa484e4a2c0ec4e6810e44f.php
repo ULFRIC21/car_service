@@ -18,7 +18,10 @@
             <a href="tel:8800535353" class="landing-header__phone">8 800 535 353</a>
             <div class="landing-header__actions">
                 <?php if(auth()->guard()->check()): ?>
-                    <a href="<?php echo e(route('home')); ?>" class="landing-btn-register">Личный кабинет</a>
+                    <?php if(auth()->user()->isAdmin()): ?>
+                        <a href="<?php echo e(route('admin.dashboard')); ?>" class="landing-btn-register">Админка</a>
+                    <?php endif; ?>
+                    <a href="<?php echo e(url('/')); ?>" class="landing-btn-register">На главную</a>
                 <?php else: ?>
                     <?php if(request()->routeIs('login')): ?>
                         <a href="<?php echo e(route('register')); ?>" class="landing-btn-register">Регистрация</a>
