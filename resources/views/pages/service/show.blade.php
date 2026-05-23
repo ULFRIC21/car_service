@@ -18,7 +18,7 @@
                 </figure>
 
                 <div class="service-page__body">
-                    @includeFirst(['pages.service.content.' . $slug, 'pages.service.content.placeholder'])
+                    @includeIf('pages.service.content.' . $slug)
                 </div>
 
                 <p class="corporate-cta">

@@ -9,4 +9,4 @@
 <p>Пример содержимого файла:</p>
 <pre class="service-page__example">&lt;p&gt;Ваш первый абзац.&lt;/p&gt;
 &lt;p&gt;Второй абзац с описанием услуги.&lt;/p&gt;</pre>
-<?php /**PATH C:\Program Files\Ampps\www\car_service\resources\views/pages/service/content/placeholder.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Program Files\Ampps\www\car_service\resources\views/pages/service/content/remont-benzonasosa.blade.php ENDPATH**/ ?>
