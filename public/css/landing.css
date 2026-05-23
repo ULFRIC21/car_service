@@ -1,0 +1,902 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body.landing-page {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    color: #222;
+    background: #fff;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.landing-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+/* --- Header --- */
+.landing-header {
+    background: #d3d3d3;
+    color: #222;
+}
+
+.landing-header__inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+    min-height: 64px;
+}
+
+.landing-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    justify-self: start;
+}
+
+.landing-logo__icon {
+    width: 38px;
+    height: 38px;
+    background: #e89090;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.landing-header__phone {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    justify-self: center;
+}
+
+.landing-header__actions {
+    justify-self: end;
+}
+
+.landing-btn-register {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: #b0b0b0;
+    color: #222;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+.landing-btn-register:hover {
+    background: #9a9a9a;
+}
+
+/* --- Subnav (чёрная линия) --- */
+.landing-subnav {
+    background: #000;
+    color: #fff;
+}
+
+.landing-subnav__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    min-height: 52px;
+    gap: 1rem;
+}
+
+.landing-subnav__link {
+    font-size: 0.95rem;
+    padding: 0.35rem 0;
+    transition: opacity 0.2s;
+}
+
+.landing-subnav__link:hover,
+.landing-subnav__link.is-active {
+    opacity: 0.85;
+    text-decoration: underline;
+}
+
+.landing-subnav__inner a:nth-child(1) { justify-self: start; text-align: left; }
+.landing-subnav__inner a:nth-child(2) { justify-self: center; text-align: center; }
+.landing-subnav__inner a:nth-child(3) { justify-self: end; text-align: right; }
+
+/* --- Hero --- */
+.landing-hero {
+    position: relative;
+    min-height: 72vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    background-color: #1a1a1a;
+    background-size: cover;
+    background-position: center;
+}
+
+.landing-hero__inner {
+    padding: 3rem 2.5rem 4rem;
+    max-width: 960px;
+}
+
+.landing-hero__phone {
+    margin: 0 0 0.75rem;
+    font-size: clamp(2.75rem, 8vw, 5.25rem);
+    font-weight: 700;
+    line-height: 1.05;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+}
+
+.landing-hero__phone a { color: #fff; }
+
+.landing-hero__tagline {
+    margin: 0 0 2.5rem;
+    font-size: clamp(1.15rem, 2.5vw, 1.65rem);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.landing-hero__cta {
+    display: inline-block;
+    padding: 0.7rem 2.75rem;
+    margin-bottom: 2.5rem;
+    border: 2px solid #e53935;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+}
+
+.landing-hero__cta:hover {
+    background: rgba(229, 57, 53, 0.2);
+}
+
+.landing-hero__disclaimer {
+    margin: 0 auto;
+    max-width: 680px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.35);
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+}
+
+/* --- Sections --- */
+.landing-section {
+    padding: 3rem 0;
+}
+
+.landing-section--light { background: #fff; color: #222; }
+.landing-section--gray { background: #e8e8e8; color: #222; }
+.landing-section--dark { background: #111; color: #fff; }
+
+.landing-section__title {
+    margin: 0 0 2rem;
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    font-weight: 700;
+    text-align: center;
+}
+
+/* --- Services grid --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.service-card {
+    background: #c62828;
+    color: #fff;
+    padding: 1.25rem 1.25rem 0;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.service-card:hover {
+    background: #9e1f1f;
+    color: #fff;
+}
+
+.service-card__title {
+    margin: 0 0 0.75rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.service-card__list {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    flex: 1;
+}
+
+.service-card__img {
+    display: block;
+    width: 100%;
+    max-height: 100px;
+    object-fit: contain;
+    object-position: right bottom;
+    margin-top: auto;
+}
+
+/* --- Jobs / home strips (макет) --- */
+.home-strips {
+    padding: 0 0 2rem;
+}
+
+.home-strip {
+    padding: 0;
+    background: #fff;
+    margin-bottom: 1rem;
+}
+
+.home-strip:last-child {
+    margin-bottom: 0;
+}
+
+.home-strip__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
+    min-height: 300px;
+}
+
+.home-strip__panel {
+    position: relative;
+    min-height: 300px;
+    overflow: hidden;
+}
+
+.home-strip__panel--gray {
+    background: #d8d8d8;
+    padding: 2.5rem 2.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-strip__panel--team-text {
+    justify-content: flex-start;
+}
+
+.home-strip__panel--team-text p {
+    margin: 1.25rem 0 0;
+    font-size: 1rem;
+    text-transform: lowercase;
+}
+
+.home-strip__panel--photo {
+    background: #fff;
+}
+
+.home-strip__panel--photo-dark {
+    background: #111;
+}
+
+.home-strip__panel--dark {
+    background: #0a0a0a;
+    color: #fff;
+    padding: 2.5rem 2.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-strip--tires {
+    background: #fff;
+}
+
+.home-strip__heading {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.home-strip__sub {
+    margin: 0 0 1.75rem;
+    font-size: 1.35rem;
+}
+
+.home-strip__text {
+    margin: 0 0 1.5rem;
+    max-width: 420px;
+    line-height: 1.55;
+    font-size: 0.95rem;
+}
+
+.home-strip__btn {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 0.55rem 1.75rem;
+    background: #3d342e;
+    color: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.home-strip__btn:hover {
+    background: #2a2420;
+    color: #fff;
+}
+
+.home-strip__photo {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+.home-strip__photo--left {
+    object-position: left center;
+}
+
+.home-strip__phone-badge {
+    position: absolute;
+    left: 50%;
+    bottom: 22%;
+    transform: translateX(-50%);
+    margin: 0;
+    background: #fff;
+    padding: 0.5rem 1.25rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+    z-index: 1;
+}
+
+.home-strip__phone-badge a {
+    color: #222;
+    text-decoration: none;
+}
+
+.home-strip__phone-badge--inline {
+    position: static;
+    transform: none;
+    display: inline-block;
+    margin-top: 0.5rem;
+    align-self: flex-start;
+}
+
+.home-strip__phone-badge--dark {
+    position: static;
+    transform: none;
+    display: inline-block;
+    margin-top: 0.25rem;
+}
+
+/* --- Legacy jobs (fallback) --- */
+.jobs-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.jobs-block__text {
+    background: #d8d8d8;
+    padding: 2rem 2.5rem;
+}
+
+.jobs-block__text h2 {
+    margin: 0 0 1.5rem;
+    font-size: 1.75rem;
+    line-height: 1.3;
+}
+
+.jobs-block__phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    background: #ccc url('../images/glav/slide1.jpg') center/cover no-repeat;
+    position: relative;
+}
+
+.jobs-block__phone span {
+    background: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.landing-btn-dark {
+    display: inline-block;
+    padding: 0.55rem 1.75rem;
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.landing-btn-dark:hover {
+    background: #111;
+}
+
+/* --- Tires --- */
+.tires-block__inner {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.tires-block__text h2 {
+    margin: 0 0 0.75rem;
+    font-size: 2rem;
+}
+
+.tires-block__text p {
+    margin: 0 0 1.25rem;
+    max-width: 520px;
+    opacity: 0.9;
+}
+
+.tires-block__phone {
+    display: inline-block;
+    background: #fff;
+    color: #111;
+    padding: 0.6rem 1.25rem;
+    font-weight: 600;
+}
+
+/* --- Team --- */
+.team-block__banner {
+    background: #d8d8d8;
+    padding: 2.5rem 2rem;
+    text-align: center;
+}
+
+.team-block__banner p {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* --- Inner pages --- */
+.page-content {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.page-content__title {
+    margin: 0 0 1.25rem;
+    font-size: 2rem;
+}
+
+.page-content__list {
+    margin: 1rem 0 1.5rem;
+    padding-left: 1.25rem;
+    line-height: 1.7;
+}
+
+.page-content__phone {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 1rem 0;
+}
+
+.page-content__phone a {
+    color: #c62828;
+}
+
+.landing-link-back {
+    color: #555;
+    text-decoration: underline;
+}
+
+/* --- Corporate page --- */
+.corporate-page {
+    padding-top: 2.5rem;
+    padding-bottom: 3.5rem;
+}
+
+.corporate-page__title {
+    margin: 0 0 2rem;
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.corporate-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(280px, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.corporate-main {
+    min-width: 0;
+}
+
+.corporate-box {
+    margin-bottom: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    border: 2px solid #c62828;
+    background: #fff;
+}
+
+.corporate-questions {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.65;
+}
+
+.corporate-questions li + li {
+    margin-top: 0.65rem;
+}
+
+.corporate-intro {
+    margin: 0;
+    line-height: 1.65;
+    font-size: 1rem;
+}
+
+.corporate-reasons__title {
+    margin: 0 0 1.25rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.corporate-reasons {
+    margin: 0 0 2rem;
+    padding-left: 1.35rem;
+    line-height: 1.6;
+}
+
+.corporate-reasons li {
+    margin-bottom: 1rem;
+}
+
+.corporate-reasons li:last-child {
+    margin-bottom: 0;
+}
+
+.corporate-reasons strong {
+    font-weight: 700;
+}
+
+.corporate-cta {
+    margin: 0 0 1rem;
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+.corporate-cta a {
+    color: #c62828;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.corporate-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.corporate-service-block {
+    margin: 0;
+}
+
+.corporate-service-block__title {
+    margin: 0;
+    padding: 0.65rem 1rem;
+    background: #1e3a5f;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.corporate-service-block__list {
+    margin: 0;
+    padding: 1rem 1.25rem 1.15rem 1.5rem;
+    background: #e0e0e0;
+    list-style: disc;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.corporate-service-block__list li + li {
+    margin-top: 0.35rem;
+}
+
+.corporate-service-block__list--links {
+    list-style: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.corporate-service-block__list--links li {
+    margin: 0;
+    padding: 0.15rem 0;
+}
+
+/* --- Service pages --- */
+.service-page {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.service-page__figure {
+    margin: 0 0 1.5rem;
+}
+
+.service-page__image {
+    display: block;
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.service-page__body {
+    line-height: 1.65;
+    font-size: 1rem;
+}
+
+.service-page__body p {
+    margin: 0 0 1rem;
+}
+
+.service-page__body h2 {
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1.15rem;
+    color: #1e3a5f;
+    text-align: center;
+}
+
+.service-page__placeholder {
+    font-size: 1.05rem;
+}
+
+.service-page__hint {
+    padding: 1rem 1.25rem;
+    background: #f5f5f5;
+    border-left: 4px solid #c62828;
+    font-size: 0.95rem;
+}
+
+.service-page__hint code {
+    display: inline-block;
+    margin-top: 0.35rem;
+    padding: 0.15rem 0.4rem;
+    background: #eee;
+    font-size: 0.85rem;
+    word-break: break-all;
+}
+
+.service-page__example {
+    padding: 1rem;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    font-size: 0.85rem;
+    overflow-x: auto;
+}
+
+.service-page__back {
+    margin: 2rem 0 0;
+}
+
+.service-sidebar__link {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    padding: 0.15rem 0;
+    transition: color 0.15s ease, background 0.15s ease;
+    border-radius: 2px;
+}
+
+.service-sidebar__link:hover {
+    color: #1e3a5f;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.service-sidebar__link.is-active {
+    font-weight: 700;
+    color: #1e3a5f;
+}
+
+.reviews-list {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.reviews-empty {
+    margin: 0 0 2rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background: #f5f5f5;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+}
+
+.reviews-empty__hint {
+    margin: 0.5rem 0 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.review-card {
+    margin: 0;
+    padding: 1.25rem 1.5rem;
+    background: #f5f5f5;
+    border-left: 4px solid #c62828;
+}
+
+.review-card footer {
+    margin-top: 0.75rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.contacts-list {
+    margin: 0 0 2rem;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0.75rem 1rem;
+}
+
+.contacts-list dt {
+    font-weight: 600;
+}
+
+.contacts-list dd {
+    margin: 0;
+}
+
+.contacts-list a {
+    color: #c62828;
+}
+
+.contacts-list__hint {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.contacts-map {
+    margin: 2rem 0 2.5rem;
+}
+
+.contacts-map__title {
+    margin: 0 0 0.5rem;
+    font-size: 1.35rem;
+}
+
+.contacts-map__caption {
+    margin: 0 0 1rem;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.contacts-map__frame {
+    position: relative;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    background: #eee;
+    aspect-ratio: 16 / 9;
+    min-height: 320px;
+}
+
+.contacts-map__frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.contacts-map__link {
+    margin: 0.75rem 0 0;
+    font-size: 0.9rem;
+}
+
+.contacts-map__link a {
+    color: #c62828;
+    text-decoration: underline;
+}
+
+@media (max-width: 992px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .jobs-block {
+        grid-template-columns: 1fr;
+    }
+
+    .home-strip__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-strips .landing-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .corporate-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .corporate-sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .corporate-service-block__title {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .landing-container {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    .landing-header__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .landing-logo,
+    .landing-header__phone,
+    .landing-header__actions {
+        justify-self: center;
+    }
+
+    .landing-subnav__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .landing-subnav__inner a {
+        justify-self: center !important;
+        text-align: center !important;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contacts-list {
+        grid-template-columns: 1fr;
+    }
+
+    .corporate-sidebar {
+        grid-template-columns: 1fr;
+    }
+}
