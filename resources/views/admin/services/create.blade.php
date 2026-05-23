@@ -5,7 +5,7 @@
 @section('content')
 <h1>Новая услуга</h1>
 
-<form method="POST" action="{{ route('admin.services.store') }}">
+<form method="POST" action="{{ route('admin.services.store') }}" enctype="multipart/form-data">
     @csrf
     @include('admin.services._form')
     <button type="submit" class="btn btn-primary">Сохранить</button>
