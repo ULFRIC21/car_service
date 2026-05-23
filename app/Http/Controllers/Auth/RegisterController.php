@@ -4,16 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
     use RegistersUsers;
-
-    protected $redirectTo = RouteServiceProvider::HOME;
 
     public function __construct()
     {
@@ -46,5 +44,13 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'role' => User::ROLE_CLIENT,
         ]);
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        return redirect('/')->with(
+            'success',
+            'Заявка принята. Мы свяжемся с вами по указанным контактам.'
+        );
     }
 }

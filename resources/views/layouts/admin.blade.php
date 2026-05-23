@@ -4,22 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Админка') — Тех Эксперт</title>
-    <link href="{{ asset('css/admin-simple.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/simple.css') }}" rel="stylesheet">
+    <style>
+        body.simple-page { background: #f4f4f4; }
+        .simple-top { border-bottom: 1px solid #ddd; }
+        .simple-brand { color: #000 !important; }
+    </style>
 </head>
-<body class="admin-page">
-<header class="admin-top">
-    <h1>Админка</h1>
-    <div class="admin-top__actions">
-        <a href="{{ url('/') }}">На сайт</a>
-        <a href="{{ route('logout') }}"
-           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+<body class="simple-page">
+<header class="simple-top">
+    <div class="simple-top__row">
+        <span class="simple-brand">Админка</span>
+        <div>
+            <a href="{{ url('/') }}">На сайт</a>
+            &nbsp;|&nbsp;
+            <a href="{{ route('logout') }}"
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none">@csrf</form>
+        </div>
     </div>
 </header>
 
-<main class="admin-wrap">
+<main class="simple-wrap">
     @if (session('success'))
-        <div class="admin-alert">{{ session('success') }}</div>
+        <div class="simple-alert">{{ session('success') }}</div>
     @endif
     @yield('content')
 </main>

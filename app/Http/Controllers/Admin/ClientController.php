@@ -18,6 +18,6 @@ class ClientController extends Controller
 
         return redirect()
             ->route('admin.dashboard')
-            ->with('success', 'Клиент «' . $user->full_name . '» перенесён в обработанные.');
+            ->with('success', 'Заявка «' . $user->full_name . '» отмечена как обработанная.');
     }
 }

@@ -1,16 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.client')
+
+@section('title', 'Изменить автомобиль')
 
 @section('content')
-<div class="container">
-    <h1>Редактировать авто</h1>
-    @if ($errors->any())
-        <div class="alert alert-danger"><ul class="mb-0">@foreach ($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul></div>
-    @endif
-    <form method="POST" action="{{ route('vehicles.update', $vehicle) }}">
-        @csrf @method('PUT')
-        @include('vehicles._form', ['vehicle' => $vehicle])
-        <button type="submit" class="btn btn-primary">Сохранить</button>
-        <a href="{{ route('vehicles.index') }}" class="btn btn-secondary">Отмена</a>
-    </form>
-</div>
+<h1>Изменить автомобиль</h1>
+
+<form method="POST" action="{{ route('vehicles.update', $vehicle) }}" class="simple-form">
+    @csrf
+    @method('PUT')
+    @include('vehicles._form', ['vehicle' => $vehicle])
+    <p>
+        <button type="submit" class="simple-btn">Сохранить</button>
+        <a href="{{ route('vehicles.index') }}">Отмена</a>
+    </p>
+</form>
 @endsection

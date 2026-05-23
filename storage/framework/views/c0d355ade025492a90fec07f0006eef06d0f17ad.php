@@ -17,7 +17,12 @@
             <a href="tel:8800535353" class="landing-header__phone">8 800 535 353</a>
             <div class="landing-header__actions">
                 <?php if(auth()->guard()->check()): ?>
-                    <a href="<?php echo e(route('home')); ?>" class="landing-btn-register">Личный кабинет</a>
+                    <?php if(auth()->user()->isAdmin()): ?>
+                        <a href="<?php echo e(route('admin.dashboard')); ?>" class="landing-btn-register">Админка</a>
+                    <?php endif; ?>
+                    <a href="<?php echo e(route('logout')); ?>" class="landing-header__logout"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>
+                    <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display:none"><?php echo csrf_field(); ?></form>
                 <?php else: ?>
                     <?php if(Route::has('register')): ?>
                         <a href="<?php echo e(route('register')); ?>" class="landing-btn-register">Регистрация</a>
@@ -39,7 +44,14 @@
         </div>
     </nav>
 
-    <main><?php echo $__env->yieldContent('content'); ?></main>
+    <main>
+        <?php if(session('success')): ?>
+            <div class="landing-container">
+                <p class="landing-notice"><?php echo e(session('success')); ?></p>
+            </div>
+        <?php endif; ?>
+        <?php echo $__env->yieldContent('content'); ?>
+    </main>
 
 </body>
 </html>

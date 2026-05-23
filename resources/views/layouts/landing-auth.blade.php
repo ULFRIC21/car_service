@@ -18,7 +18,10 @@
             <a href="tel:8800535353" class="landing-header__phone">8 800 535 353</a>
             <div class="landing-header__actions">
                 @auth
-                    <a href="{{ route('home') }}" class="landing-btn-register">Личный кабинет</a>
+                    @if (auth()->user()->isAdmin())
+                        <a href="{{ route('admin.dashboard') }}" class="landing-btn-register">Админка</a>
+                    @endif
+                    <a href="{{ url('/') }}" class="landing-btn-register">На главную</a>
                 @else
                     @if (request()->routeIs('login'))
                         <a href="{{ route('register') }}" class="landing-btn-register">Регистрация</a>

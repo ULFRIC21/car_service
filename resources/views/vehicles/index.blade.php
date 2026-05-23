@@ -1,49 +1,44 @@
-@extends('layouts.app')
+@extends('layouts.client')
 
-@section('title', 'Мои автомобили — АвтоМастер')
+@section('title', 'Мои автомобили')
 
 @section('content')
-<div class="as-page-header">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
-        <div>
-            <h1 class="mb-1">Мои автомобили</h1>
-            <p class="text-muted mb-0">Список авто для записи в сервис</p>
-        </div>
-        <a href="{{ route('vehicles.create') }}" class="btn as-btn-cta"><i class="bi bi-plus-lg me-1"></i>Добавить</a>
-    </div>
-</div>
+<h1>Мои автомобили</h1>
 
-<div class="container">
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+<p><a href="{{ route('vehicles.create') }}">+ Добавить автомобиль</a></p>
 
-    <div class="as-card overflow-hidden">
-        <div class="table-responsive">
-            <table class="table table-hover mb-0">
-                <thead class="table-light">
-                    <tr><th>Марка</th><th>Модель</th><th>Номер</th><th></th></tr>
-                </thead>
-                <tbody>
-                    @forelse ($vehicles as $vehicle)
-                        <tr>
-                            <td>{{ $vehicle->brand }}</td>
-                            <td>{{ $vehicle->model }}</td>
-                            <td>{{ $vehicle->plate_number }}</td>
-                            <td>
-                                <a href="{{ route('vehicles.edit', $vehicle) }}" class="btn btn-sm btn-outline-primary">Изменить</a>
-                                <form action="{{ route('vehicles.destroy', $vehicle) }}" method="POST" class="d-inline" onsubmit="return confirm('Удалить?');">
-                                    @csrf @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-outline-danger">Удалить</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr><td colspan="4" class="text-center text-muted py-4">Нет авто. <a href="{{ route('vehicles.create') }}">Добавить первое</a></td></tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+@if ($vehicles->isEmpty())
+    <p class="simple-muted">Автомобилей нет. <a href="{{ route('vehicles.create') }}">Добавить первый</a></p>
+@else
+    <table class="simple-table">
+        <thead>
+            <tr>
+                <th>Марка</th>
+                <th>Модель</th>
+                <th>Год</th>
+                <th>Номер</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($vehicles as $vehicle)
+                <tr>
+                    <td>{{ $vehicle->brand }}</td>
+                    <td>{{ $vehicle->model }}</td>
+                    <td>{{ $vehicle->year ?: '—' }}</td>
+                    <td>{{ $vehicle->plate_number }}</td>
+                    <td>
+                        <a href="{{ route('vehicles.edit', $vehicle) }}">Изменить</a>
+                        |
+                        <form action="{{ route('vehicles.destroy', $vehicle) }}" method="POST" style="display:inline" onsubmit="return confirm('Удалить?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="simple-link-btn">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endif
 @endsection

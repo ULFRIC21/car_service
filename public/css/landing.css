@@ -1000,3 +1000,24 @@ a {
     font-size: 0.9rem;
     list-style: none;
 }
+
+.landing-notice {
+    margin: 1rem 0 0;
+    padding: 0.85rem 1rem;
+    background: #fff8e1;
+    border: 1px solid #f0c040;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.landing-header__logout {
+    margin-left: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+}
+
+.landing-header__logout:hover {
+    text-decoration: underline;
+}
