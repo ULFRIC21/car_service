@@ -33,7 +33,7 @@
         <h2 class="landing-section__title">Оказываем услуги по ремонту автомобилей</h2>
         <div class="services-grid">
             @foreach (config('site_services.categories') as $category)
-                <a href="{{ route('services.show', $category['slug']) }}" class="service-card">
+                <a href="{{ route('services.show', $category['pages'][0]['slug']) }}" class="service-card">
                     <h3 class="service-card__title">{{ $category['title'] }}</h3>
                     <ul class="service-card__list">
                         @foreach ($category['card_items'] as $item)

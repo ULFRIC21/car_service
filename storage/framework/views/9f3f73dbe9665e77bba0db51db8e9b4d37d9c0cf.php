@@ -18,7 +18,7 @@
                 </figure>
 
                 <div class="service-page__body">
-                    <?php echo $__env->first(['pages.service.content.' . $slug, 'pages.service.content.placeholder'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                    <?php if ($__env->exists('pages.service.content.' . $slug)) echo $__env->make('pages.service.content.' . $slug, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 </div>
 
                 <p class="corporate-cta">
